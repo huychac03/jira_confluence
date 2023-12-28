@@ -38,7 +38,7 @@ services:
     networks:
       - jira-confluence-network
     volumes:
-      - postgresql:/var/lib/postgresql
+      - postgresql:/var/lib/postgresql/data
     ports:
       - '5432:5432'
     environment:
