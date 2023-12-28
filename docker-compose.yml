@@ -1,0 +1,66 @@
+version: '3.8'
+services:
+  jira:
+    image: haxqer/jira:9.11.3
+    container_name: jira
+    restart: always
+    ports:
+      - '8080:8080'
+    networks:
+      - jira-confluence-network
+    volumes:
+      - jira_home_data:/var/jira
+      - ./server.xml:/opt/jira/conf/server.xml
+    environment:
+      - ATL_TOMCAT_SCHEME=https
+      - ATL_TOMCAT_SECURE=true
+      - ATL_PROXY_PORT=443
+      - ATL_PROXY_NAME=jira.emddi.xyz
+      - TZ='Asia/Shanghai'
+
+  confluence:
+    container_name: confluence
+    image: haxqer/confluence:8.6.1
+    restart: always
+    ports:
+      - '8090:8090'
+    volumes:
+      - confluence_home_data:/var/confluence
+    networks:
+      - jira-confluence-network
+    environment:
+      - TZ='Asia/Shanghai'
+
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: always
+    networks:
+      - jira-confluence-network
+    volumes:
+      - postgresql:/var/lib/postgresql
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_DB=confluence
+      - POSTGRES_USER=confluence
+      - POSTGRES_PASSWORD=confluence
+      - POSTGRES_ENCODING=UNICODE
+      - POSTGRES_COLLATE=C
+      - POSTGRES_COLLATE_TYPE=C
+networks:
+  jira-confluence-network:
+    external: true
+
+volumes:
+  confluence_home_data:
+    external: true
+  jira_home_data:
+    external: true
+  postgresql:
+    external: true
+
+# JDBC URL:  jdbc:postgresql://postgres:5432/confluence
+# db: login: confluence / password: confluence
+# need a Confluence license such as a $10 10 user license or timebomb license
+
