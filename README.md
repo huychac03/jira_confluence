@@ -40,4 +40,8 @@ In this example, I using Nginx as a Proxy Server
     - password: `confluence`
     - schema: `public`
 
- 
+
+# Note:
+1. Fix bug can not login by root user after import data:
+    - https://confluence.atlassian.com/doc/restore-passwords-to-recover-admin-user-rights-158390.html
+    - https://confluence.atlassian.com/doc/configuring-system-properties-168002854.html

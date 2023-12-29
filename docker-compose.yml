@@ -10,7 +10,7 @@ services:
       - jira-confluence-network
     volumes:
       - jira_home_data:/var/jira
-      - ./server.xml:/opt/jira/conf/server.xml
+      - ./jira/server.xml:/opt/jira/conf/server.xml
     environment:
       - ATL_TOMCAT_SCHEME=https
       - ATL_TOMCAT_SECURE=true
@@ -26,13 +26,14 @@ services:
       - '8090:8090'
     volumes:
       - confluence_home_data:/var/confluence
+      - ./confluence/server.xml:/opt/confluence/conf/server.xml
     networks:
       - jira-confluence-network
     environment:
       - TZ='Asia/Shanghai'
 
   postgres:
-    image: postgres
+    image: postgres:15.5
     container_name: postgres
     restart: always
     networks:
