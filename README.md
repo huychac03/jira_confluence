@@ -41,7 +41,39 @@ In this example, I using Nginx as a Proxy Server
     - schema: `public`
 
 
-# Note:
+# Note & How to fix Bugs:
 1. Fix bug can not login by root user after import data:
+    Troubleshooting:
     - https://confluence.atlassian.com/doc/restore-passwords-to-recover-admin-user-rights-158390.html
     - https://confluence.atlassian.com/doc/configuring-system-properties-168002854.html
+
+2. Fix bug about "Collaborative":
+    Troubleshooting: 
+    - Turn on Collaborative editing:  https://confluence.atlassian.com/doc/troubleshooting-collaborative-editing-858772087.html
+    - If Collaborative editing is already enabled, but the Synchrony system has problems: 
+        - Restart the Synchrony system
+        - Check port 8091 is available
+        - Reverse proxy issues
+        - And some other issues....
+        All using this documentation to fix: https://confluence.atlassian.com/doc/troubleshooting-collaborative-editing-858772087.html
+        If you do everything but still got the error: Consider recreating the Confluence Container!!!
+
+3. Fix bug Unable to Export in Excel:
+    Troubleshooting: 
+    - https://confluence.atlassian.com/jirakb/unable-to-export-in-excel-missing-excel-all-fields-excel-current-fields-options-1141973487.html
+    OR:
+    - Find jira-config.properties file and then add "jira.export.excel.enabled" in to this file.
+    - Note:
+        - From JIRA 7.2 export in EXCEL has been removed but, if you want you can unlock that feature as follow :
+            Stop JIRA.
+            Locate the jira-config.properties file in the $JIRA_HOME directory. If the file does not exist, please proceed to create it.
+            Open the file and add the below on a separate line:
+            jira.export.excel.enabled=true
+            Save this file.
+            Restart JIRA.
+
+4. Cann't find jira-config.properties file:
+    Troubleshooting: 
+    - This file is located in the Jira application home directory. 
+    - In new Jira installations, this file may not initially exist and if so, it needs to be created manually in that directory.
+
