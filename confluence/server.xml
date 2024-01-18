@@ -71,7 +71,7 @@
                    maxThreads="48" maxPostSize="16777216" minSpareThreads="10"
                    enableLookups="false" acceptCount="10" URIEncoding="UTF-8"
                    protocol="org.apache.coyote.http11.Http11NioProtocol"
-                   scheme="https" secure="true" proxyName="confluence.emddi.xyz" proxyPort="443"/>
+                   scheme="https" secure="true" proxyName="confluence.emddi.com" proxyPort="443"/>
 
 
         <Engine name="Standalone" defaultHost="localhost">
