@@ -40,6 +40,16 @@ In this example, I using Nginx as a Proxy Server
     - password: `confluence`
     - schema: `public`
 
+8. Get license form Confluence:
+    ```
+    docker exec confluence java -jar /var/agent/atlassian-agent.jar \
+        -d \
+        -p conf \
+        -m emd@emd.com \
+        -n emd@emd.com \
+        -o emd\
+        -s you-server-id-xxxx
+    ```
 
 # Note & How to fix Bugs:
 1. Fix bug can not login by root user after import data:
